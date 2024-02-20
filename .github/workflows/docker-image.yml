@@ -19,7 +19,7 @@ jobs:
           node-version: v20.11.1
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name
+        run: docker build . --file Dockerfile --tag wuhaoyang123/my-image-name:${{github.run_number}}
 
       - name: Docker Login
         uses: docker/login-action@v3.0.0
@@ -28,4 +28,4 @@ jobs:
           password: dckr_pat_pUXy0s_CYaMKzEBuO3XXiyshz-I
 
       - name: Push Docker image to Docker Hub
-        run: docker push wuhaoyang123/my-image-name
+        run: docker push wuhaoyang123/my-image-name:${{github.run_number}}
