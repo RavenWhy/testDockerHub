@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "run": "node app.js"
+    "run": "node app.js",
+    "build": "docker build . --file Dockerfile --tag wuhaoyang123/my-image-name"
   },
   "dependencies": {
     "express": "^4.18.2"
