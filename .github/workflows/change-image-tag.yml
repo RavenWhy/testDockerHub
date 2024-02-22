@@ -10,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      
-    - name: Make changes
-      run: |
-        echo "Hello, world!" >> example.txt
-    
-    - name: Commit changes
-      run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
-        git add .
-        git commit -m "Automated commit by GitHub Actions"
-    
-    - name: Push changes
-      env:
-        TOKEN: ${{ secrets.TARGET_REPO_PAT }}  # 从 secrets 中获取 PAT
-      run: |
-        git remote add target https://github.com/whyy9527/test-environmental-with-Kubernetes.git
-        git push target main
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Make changes
+        run: |
+          echo "Hello, world!${{github.run_number}}" >> example.txt
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git add .
+          git commit -m "Automated commit by GitHub Actions"
+
+      - name: Push changes
+        env:
+          TOKEN: ${{ secrets.TARGET_REPO_PAT }} # 从 secrets 中获取 PAT
+        run: |
+          git remote add target https://github.com/whyy9527/test-environmental-with-Kubernetes.git
+          git push target main
